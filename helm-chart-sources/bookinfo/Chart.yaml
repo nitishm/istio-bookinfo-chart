@@ -1,0 +1,22 @@
+apiVersion: v2
+name: bookinfo
+dependencies:
+  - name: ratings 
+    condition: ratings.enabled
+    version: v1
+    repository: "file://charts/ratings"
+  - name: details 
+    condition: details.enabled
+    version: v1
+    repository: "file://charts/details"
+  - name: productpage 
+    condition: productpage.enabled
+    version: v1
+    repository: "file://charts/productpage"
+  - name: reviews 
+    condition: reviews.enabled
+    version: v1
+    repository: file://charts/reviews
+type: application
+version: v1
+appVersion: "0.16.2"

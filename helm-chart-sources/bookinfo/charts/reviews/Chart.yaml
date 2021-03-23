@@ -1,0 +1,6 @@
+apiVersion: v2
+name: reviews
+description: A Helm chart for bookinfo, reviews application by Istio Authors 
+type: application
+version: v1 
+appVersion: "1.16.2"

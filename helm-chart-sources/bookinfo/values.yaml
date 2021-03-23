@@ -1,0 +1,11 @@
+details:
+  replicaCount: 1
+
+ratings:
+  replicaCount: 2
+
+reviews:
+  replicaCount: 3
+
+productpage:
+  replicaCount: 1

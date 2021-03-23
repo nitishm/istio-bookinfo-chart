@@ -1,0 +1,126 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-v1
+  labels:
+    app: {{ .Chart.Name }}
+    version: v1
+spec:
+  replicas:  {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+        version: v1
+    spec:
+      serviceAccountName: bookinfo-{{ .Chart.Name }}
+      containers:
+      - name: {{ .Chart.Name }}
+        image: {{ .Values.image.repository }}/{{ .Values.image.name }}-v1:{{ .Values.image.tag}}
+        imagePullPolicy: {{ .Values.image.pullPolicy}} 
+        env:
+        - name: LOG_DIR
+          value: "/tmp/logs"
+        ports:
+        - containerPort: {{ .Values.container.port }} 
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        - name: wlp-output
+          mountPath: /opt/ibm/wlp/output
+        securityContext:
+          runAsUser: 1000
+      volumes:
+      - name: wlp-output
+        emptyDir: {}
+      - name: tmp
+        emptyDir: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-v2
+  labels:
+    app: {{ .Chart.Name }}
+    version: v2
+spec:
+  replicas:  {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+        version: v2
+    spec:
+      serviceAccountName: bookinfo-{{ .Chart.Name }}
+      containers:
+      - name: {{ .Chart.Name }}
+        image: {{ .Values.image.repository }}/{{ .Values.image.name }}-v2:{{ .Values.image.tag}}
+        imagePullPolicy: {{ .Values.image.pullPolicy}} 
+        env:
+        - name: LOG_DIR
+          value: "/tmp/logs"
+        ports:
+        - containerPort: 9080
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        - name: wlp-output
+          mountPath: /opt/ibm/wlp/output
+        securityContext:
+          runAsUser: 1000
+      volumes:
+      - name: wlp-output
+        emptyDir: {}
+      - name: tmp
+        emptyDir: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-v3
+  labels:
+    app: {{ .Chart.Name }}
+    version: v3
+spec:
+  replicas:  {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+      version: v3
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+        version: v3
+    spec:
+      serviceAccountName: bookinfo-{{ .Chart.Name }}
+      containers:
+      - name: {{ .Chart.Name }}
+        image: {{ .Values.image.repository }}/{{ .Values.image.name }}-v3:{{ .Values.image.tag}}
+        imagePullPolicy: {{ .Values.image.pullPolicy}} 
+        env:
+        - name: LOG_DIR
+          value: "/tmp/logs"
+        ports:
+        - containerPort: 9080
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        - name: wlp-output
+          mountPath: /opt/ibm/wlp/output
+        securityContext:
+          runAsUser: 1000
+      volumes:
+      - name: wlp-output
+        emptyDir: {}
+      - name: tmp
+        emptyDir: {}
+---

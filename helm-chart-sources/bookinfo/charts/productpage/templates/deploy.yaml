@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-{{ .Chart.Version }}
+  labels:
+    app: {{ .Chart.Name }}
+    version: {{ .Chart.Version }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+      version: {{ .Chart.Version }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+        version: {{ .Chart.Version }}
+    spec:
+      serviceAccountName: bookinfo-{{ .Chart.Name }}
+      containers:
+      - name: {{ .Chart.Name }}
+        image: {{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag}}
+        imagePullPolicy: {{ .Values.image.pullPolicy}} 
+        ports:
+        - containerPort: {{ .Values.container.port }} 
+        securityContext:
+          runAsUser: 1000
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+      volumes:
+      - name: tmp
+        emptyDir: {}
