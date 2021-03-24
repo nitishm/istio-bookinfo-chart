@@ -3,7 +3,7 @@ entries:
   bookinfo:
   - apiVersion: v2
     appVersion: 0.16.2
-    created: "2021-03-23T01:59:21.2052236-07:00"
+    created: "2021-03-24T11:26:31.7301837-07:00"
     dependencies:
     - condition: ratings.enabled
       name: ratings
@@ -21,10 +21,10 @@ entries:
       name: reviews
       repository: file://charts/reviews
       version: v1
-    digest: c4a23072c73b2ed8bf896009926c332700bd8e4c2661a5456e62c6b54c401fb9
+    digest: 80e11ec912112311a1e51cb91e3b448ac246b08684bd729679f22fa9ea3763c3
     name: bookinfo
     type: application
     urls:
     - https://nitishm.github.com.io/istio-bookinfo-chart/bookinfo-v1.tgz
     version: v1
-generated: "2021-03-23T01:59:21.2035502-07:00"
+generated: "2021-03-24T11:26:31.7287976-07:00"
