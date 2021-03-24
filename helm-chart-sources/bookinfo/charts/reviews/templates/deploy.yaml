@@ -5,6 +5,7 @@ metadata:
   labels:
     app: {{ .Chart.Name }}
     version: v1
+    parent: {{ template "parent" }}
 spec:
   replicas:  {{ .Values.replicaCount }}
   selector:
@@ -47,6 +48,7 @@ metadata:
   labels:
     app: {{ .Chart.Name }}
     version: v2
+    parent: {{ template "parent" }}
 spec:
   replicas:  {{ .Values.replicaCount }}
   selector:
@@ -89,6 +91,7 @@ metadata:
   labels:
     app: {{ .Chart.Name }}
     version: v3
+    parent: {{ template "parent" }}
 spec:
   replicas:  {{ .Values.replicaCount }}
   selector:
