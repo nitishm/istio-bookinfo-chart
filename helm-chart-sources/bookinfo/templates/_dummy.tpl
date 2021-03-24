@@ -1,3 +1,3 @@
-{{- define hello }}
-{{- printf "hello world"}}
+{{- define "parent" }}
+{{- printf "bookinfo"}}
 {{- end }}
